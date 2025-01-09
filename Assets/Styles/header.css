@@ -1,0 +1,44 @@
+:root {
+    --primary-collor: #37D366;
+    --second-collor: #00665E;
+    --black-collor: #0D0D0D;
+    --white-collor: #FFFFFF;
+}
+
+.header{
+    background-color: var(--black-collor);
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3%;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+}
+
+.logo {
+    flex: 1; 
+}
+
+.logo-image {
+    width: 7rem;
+}
+
+.Navegacao-header {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: 4rem;
+}
+
+.items-navegacao {
+    color: var(--white-collor);
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.2s;
+
+    &:hover{
+        color: var(--second-collor);
+    }
+}
