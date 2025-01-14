@@ -1,0 +1,77 @@
+:root {
+    --primary-collor: #37D366;
+    --second-collor: #00665E;
+    --black-collor: #0D0D0D;
+    --white-collor: #FFFFFF;
+}
+
+.footer{
+    background-color: var(--second-collor);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+.esquerdo-footer h2{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.content-footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.contatos-footer {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: var(--black-collor);
+}
+
+.endereco-footer{
+    margin-top: 2rem;
+}
+
+.icone-footer{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contatos-footer i{
+    color: var(--black-collor);
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-top: 2rem;
+}
+
+.conteudo-centro-footer{
+    display: flex;
+    flex-direction: column;
+}
+
+.items-navegacao-footer{
+    text-decoration: none;
+    color: var(--black-collor);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.direito-footer p{
+    margin-bottom: 0.5rem;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.8rem;
+    margin-top: 3rem;
+}
