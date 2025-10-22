@@ -1,5 +1,5 @@
 
-const targetDate = new Date("July 30, 2025 00:00:01").getTime();
+const targetDate = new Date("July 30, 2026 00:00:01").getTime();
 
 const countdownInterval = setInterval(() => {
 

@@ -305,11 +305,12 @@
 .carrossel-sobre {
     color: var(--white-collor);
     width: 40%;
-    height: 400px;
+    height: 450px;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
+    max-width: 600px;
 }
 
 .carrossel-imagens {
@@ -321,8 +322,10 @@
 .carrossel-imagens img {
     flex: 0 0 100%;
     height: 100%; 
-    object-fit: contain; 
+    object-fit: cover; 
+    object-position: center;
     display: block;
+    width: 100%;
 }
 
 @keyframes slide {
@@ -625,6 +628,147 @@ Competição
     top: 8rem;
   }
 
+
+   /*//////////////////////
+  Contato
+  //////////////////////*/
+
+
+  .section-contato {
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(0,102,94,1) 0%, rgba(13,13,13,1) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-collor);
+    position: relative;
+    padding: 4rem 2rem;
+}
+
+.titulo-contato {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--white-collor);
+    margin-bottom: 1rem;
+}
+
+.container-contato {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 6rem;
+    width: 80%;
+    flex-wrap: wrap;
+}
+
+
+.formulario-contato {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: solid 2px var(--primary-collor);
+    border-radius: 15px;
+    padding: 2rem 2rem;
+    width: 45%;
+    min-width: 320px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.formulario-contato label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: var(--white-collor);
+}
+
+.formulario-contato input,
+.formulario-contato textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255,255,255,0.1);
+    color: var(--white-collor);
+    font-size: 1rem;
+}
+
+.formulario-contato input:focus,
+.formulario-contato textarea:focus {
+    outline: 2px solid var(--primary-collor);
+    background-color: rgba(255,255,255,0.15);
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-collor);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: var(--black-collor);
+    transition: all 0.2s;
+}
+
+.btn-enviar:hover {
+    background-color: #2ab95a;
+}
+
+
+.outras-formas-contato {
+    width: 35%;
+    min-width: 300px;
+    text-align: center;
+}
+
+.outras-formas-contato h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.cards-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card-contato {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--primary-collor);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    text-decoration: none;
+    color: var(--white-collor);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.card-contato:hover {
+    transform: scale(1.03);
+    background-color: rgba(0, 102, 94, 0.6);
+}
+
+.card-contato i {
+    font-size: 2rem;
+    margin-right: 1.2rem;
+    color: var(--primary-collor);
+}
+
+.card-contato .texto-card h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.card-contato .texto-card p {
+    font-size: 0.95rem;
+    color: #d8d8d8;
+    line-height: 1.3rem;
+}
   
 
 

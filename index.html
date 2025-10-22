@@ -112,8 +112,8 @@
             <div class="conteudo-sobre">
                 <div class="texto-sobre">
                     <p class="p-texto-sobre">Somos uma equipe de competição formada em 2016
-                        inteiramente por alunos de graduação da Escola de
-                        Engenharia da Universidade Federal de Minas Gerais. Nossa equipe projeta e constrói inteiramente dentro da
+                        inteiramente por alunos de graduação da  da Universidade Federal de Minas Gerais.
+                        Nossa equipe projeta e constrói inteiramente dentro da
                         Escola de Engenharia um carro protótipo 100% elétrico de
                         alta performance, com o qual participamos da
                         competição Fórmula SAE Brasil na categoria de veículos
@@ -420,6 +420,71 @@
         <section class="section-patrocinios" id="patrocinios">
             <h1 class="titulo-patrocinios">Patrocínios</h1>
         </section>
+
+        <section id="contato" class="section-contato">
+            <h1 class="titulo-contato">Entre em Contato</h1>
+            <div class="container-contato">
+                
+                <div class="formulario-contato">
+                    <form id="form-contato-tesla"
+                          action="https://docs.google.com/forms/d/e/1FAIpQLSf9RRsKhrmY05PeyawkjU3A2LMUyo9cLgiMiEQrim5WcAUWIA/formResponse"
+                          method="POST"
+                          class="form-contato-google">
+                  
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="entry.1867406469" placeholder="Digite seu nome" required>
+                  
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="entry.1480773641" placeholder="Digite seu email" required>
+                  
+                        <label for="celular">Celular</label>
+                        <input type="tel" id="celular" name="entry.1634534568" placeholder="(XX) XXXXX-XXXX" required>
+                  
+                        <label for="assunto">Assunto</label>
+                        <input type="text" id="assunto" name="entry.86531071" placeholder="Assunto da mensagem" required>
+                  
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="entry.188097407" rows="5" placeholder="Digite sua mensagem..." required></textarea>
+                  
+                        <button type="submit" class="btn-enviar">Enviar</button>
+                  
+                        <div id="mensagem-status"></div>
+                    </form>
+                  </div>
+        
+              
+                <div class="outras-formas-contato">
+                    <h3>Outras Formas de Contato</h3>
+                    <div class="cards-contato">
+        
+                        <a href="mailto:formulateslaufmg@gmail.com" target="_blank" class="card-contato email">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div class="texto-card">
+                                <h4>Email</h4>
+                                <p>Envie-nos um e-mail direto para nossa equipe e retornaremos o mais rápido possível.</p>
+                            </div>
+                        </a>
+        
+                        <a href="https://wa.me/5511943210060" target="_blank" class="card-contato whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <div class="texto-card">
+                                <h4>WhatsApp</h4>
+                                <p>Fale conosco diretamente pelo WhatsApp da equipe Tesla UFMG.</p>
+                            </div>
+                        </a>
+        
+                        <a href="https://www.instagram.com/teslaufmg/" target="_blank" class="card-contato instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                            <div class="texto-card">
+                                <h4>Instagram</h4>
+                                <p>Acompanhe nossos projetos e novidades pelo Instagram oficial.</p>
+                            </div>
+                        </a>
+        
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer class="footer"  id="contatos">
         <div class="content-footer">
@@ -469,6 +534,7 @@
     <script src="./Assets/js/app.js"></script>
     <script src="./Assets/js/sliderResultados.js"></script>
     <script src="./Assets/js/timerCompeticao.js"></script>
+    <script src="./Assets/js/contatoForm.js"></script>
 </body>
 </html>
 
