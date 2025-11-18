@@ -39,6 +39,6 @@
     transition: all 0.2s;
 
     &:hover{
-        color: var(--second-collor);
+        color: var(--primary-collor);
     }
 }
