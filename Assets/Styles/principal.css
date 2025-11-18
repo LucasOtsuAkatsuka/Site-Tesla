@@ -214,10 +214,11 @@
     transition: color 0.2s;
 }
 
-/* /////////////////////////////////////////////////////////////////
+/* //////////////////////////////////////////////////////////////////////////////////////////
 
 /* Section timer
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
 .timer-competicao{
@@ -227,20 +228,21 @@
     }
 
 
-/* /////////////////////////////////////////////////////////////////
+/* //////////////////////////////////////////////////////////////////////////////////////////
 
 /* Section Sobre
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
 .section-sobre {
     scroll-margin-top: 6rem;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 40%, var(--black-collor) 100%), 
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 40%, var(--black-collor) 90%), 
                       url('../images/equipe2025-2.jpg');
     
-    max-height: 100vh;
+    height: 100vh;
     background-size: cover;
-    background-position: center 55%; 
+    background-position: center 65%; 
     background-repeat: no-repeat;
     
     text-align: center;
@@ -373,13 +375,13 @@
     100% { transform: translateX(-400%); }
 }
 
-/*/////////////////////////
+/*////////////////////////////////////////////////////////////////////////////////////////////////////
 Equipe
-///////////////////////////*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .section-equipe {
     scroll-margin-top: 6rem;
-    height: 100vh;
+    max-height: 100vh;
     background: var(--black-collor);
     background: linear-gradient(180deg, var(--black-collor) 0%, var(--second-collor) 100%);
     text-align: center;
@@ -396,14 +398,14 @@ Equipe
     font-size: 4rem;
     text-align: center;
     position: absolute;
-    top: 1rem;
+    top: 2rem;
 }
 
 .container-cards {
     display: flex;
     gap: 3rem;
     perspective: 1000px;
-    margin-top: 0rem;
+    margin-top: 10rem;
 }
 
 .card {
@@ -448,7 +450,7 @@ Equipe
 .titulo-card-front , .titulo-card-back {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .card-front p {
@@ -460,31 +462,31 @@ Equipe
 }
 
 .btn-saiba-equipe {
-    background-color: var(--second-collor);
+    background-color: var(--white-collor);
     padding: 0.5rem 1.5rem;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 700;
     transition: all 0.2s;
     margin-top: 2rem;
     text-decoration: none;
-    color: var(--white-collor);
-    border: solid 2px var(--primary-collor);
+    color: var(--black-collor);
+    /* border: solid 2px var(--primary-collor); */
 
     &:hover{
         background-color: #028378;
     }
 }
 
-/*/////////////////////////
+/*////////////////////////////////////////////////////////////////////////////////////////////////////
 Competição
-///////////////////////////*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .section-competicao {
     scroll-margin-top: 6rem;
-    height: calc(107vh);
+    height: 100vh;
     background: rgb(0,102,94);
-    background: linear-gradient(180deg, #00665e 0%, rgba(13,13,13,1) 100%);
+    background: linear-gradient(var(--black-collor) 0%, var(--second-collor) 100%);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -495,11 +497,11 @@ Competição
 
 .titulo-competicao {
     color: var(--white-collor);
-    font-weight: 500;
+    font-weight: 700;
     font-size: 4rem;
     text-align: center;
     position: absolute;
-    top: 8rem;
+    top: 1rem;
 }
 
 .conteudo-competicao {
@@ -507,14 +509,20 @@ Competição
     justify-content: center;
     align-items: center;
     gap: 10rem;
-    width: 60%;
-    margin-top: 10rem;
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .texto-competicao {
     font-size: 1.5rem;
     font-weight: 400;
     color: var(--white-collor);
+    width: 40rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(20px);
+    padding: 2%;
+    border-radius: 1rem;
 }
 
 
@@ -532,7 +540,7 @@ Competição
     font-size: 1rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    background-color: var(--primary-collor);
+    background-color: var(--black-collor);
     padding: 0.2rem 0.5rem;
     border-radius: 10px;
   }
@@ -549,12 +557,14 @@ Competição
     align-items: center;
     flex-direction: column;
     font-size: 20px;
-    color: white;
+    color: var(--white-collor);
     font-weight: bold;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: solid 2px var(--primary-collor)
+    border: solid 2px var(--white-collor);
+    
+    background-color: var(--white-collor);
   }
 
   .swiper-container .swiper-slide {
@@ -567,7 +577,7 @@ Competição
   }
 
   .swiper-pagination-bullet-active {
-    background: white !important;
+    background: var(--white-collor) !important;
   }
 
   .swiper-slide h5 {
@@ -590,15 +600,15 @@ Competição
   }
 
   .btn-saiba-competicao {
-    background-color: var(--second-collor);
+    background-color: var(--white-collor);
     padding: 0.5rem 1.5rem;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 700;
     transition: all 0.2s;
-    margin-top: 5rem;
+    margin-top: 2rem;
     text-decoration: none;
-    color: var(--white-collor);
+    color: var(--black-collor);
 
     &:hover{
         background-color: #028378;
@@ -606,9 +616,9 @@ Competição
   }
 
 
-  /*//////////////////////
-  resultados
-  //////////////////////*/
+  /*/////////////////////////////////////////////////////////////////////////////////////////////////
+  Resultados
+  /////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .section-resultados {
     scroll-margin-top: 6rem;
@@ -624,9 +634,9 @@ Competição
     top: 8rem;
 }
 
-  /*//////////////////////
+  /*/////////////////////////////////////////////////////////////////////////////////////////////////
   Patrocínios
-  //////////////////////*/
+  /////////////////////////////////////////////////////////////////////////////////////////////////*/
 
   .section-patrocinios{
     scroll-margin-top: 6rem;
