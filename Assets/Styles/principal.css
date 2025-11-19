@@ -642,7 +642,7 @@ Competição
     scroll-margin-top: 6rem;
     height: calc(100vh);
     background: rgb(13,13,13);
-    background: linear-gradient(180deg, rgba(13,13,13,1) 0%, rgba(0,102,94,1) 100%);
+    background: linear-gradient(180deg, var(--second-collor) 0%, var(--primary-collor) 100%);
     text-align: center;
     display: flex;
     justify-content: center;
