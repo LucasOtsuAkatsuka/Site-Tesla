@@ -620,10 +620,13 @@ Competição
   Resultados
   /////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.section-resultados {
+.section-resultados, .carousel {
     scroll-margin-top: 6rem;
+    height: 100vh;
     color: var(--white-collor);
 }
+
+
 
 .titulo-resultados {
     color: var(--white-collor);
