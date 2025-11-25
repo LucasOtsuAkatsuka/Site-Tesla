@@ -1,62 +1,35 @@
-let carouselDom = document.querySelector('.carousel');
-let SliderDom = carouselDom.querySelector('.carousel .list');
-let thumbnailBorderDom = document.querySelector('.carousel .thumbnail');
-let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
+let listItems = document.querySelectorAll('.carousel .list .item');
+let thumbnailItems = document.querySelectorAll('.carousel .thumbnail .item');
 
-let timeRunning = 1050; 
-let timeAutoNext = 7000;
-
+let itemActive = 0;
+let countItem = listItems.length;
 let isRunning = false; 
-let runTimeOut;
 
-thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+refreshSlider();
 
-thumbnailBorderDom.addEventListener('click', (event) => {
-    const clickedItem = event.target.closest('.item');
-    if (!clickedItem || isRunning) return;
+thumbnailItems.forEach((thumbnail, index) => {
+    thumbnail.addEventListener('click', () => {
+        if (index === itemActive || isRunning) return;
 
-    const currentActiveImage = SliderDom.querySelector('.item img').src;
-    
-    const clickedImage = clickedItem.querySelector('img').src;
-    if (currentActiveImage === clickedImage) {
-        return;
-    }
-
-    const currentThumbs = document.querySelectorAll('.carousel .thumbnail .item');
-    const index = Array.from(currentThumbs).indexOf(clickedItem);
-
-    for (let i = 0; i < index; i++) {
-        let firstSlider = SliderDom.querySelector('.item');
-        let firstThumb = thumbnailBorderDom.querySelector('.item');
+        itemActive = index;
         
-        SliderDom.appendChild(firstSlider);
-        thumbnailBorderDom.appendChild(firstThumb);
-    }
-    showSlider('next');
+        refreshSlider();
+    });
 });
 
-function showSlider(type){
-    if(isRunning === true) return; 
+function refreshSlider() {
     isRunning = true;
 
-    let SliderItemsDom = SliderDom.querySelectorAll('.carousel .list .item');
-    let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
-    
-    if(type === 'next'){
-        SliderDom.appendChild(SliderItemsDom[0]);
-        thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
-        carouselDom.classList.add('next');
-    }else{
-        SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
-        thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
-        carouselDom.classList.add('prev');
-    }
+    let itemActiveOld = document.querySelector('.carousel .list .item.active');
+    let thumbnailActiveOld = document.querySelector('.carousel .thumbnail .item.active');
 
-    clearTimeout(runTimeOut);
+    if(itemActiveOld) itemActiveOld.classList.remove('active');
+    if(thumbnailActiveOld) thumbnailActiveOld.classList.remove('active');
 
-    runTimeOut = setTimeout(() => {
-        carouselDom.classList.remove('next');
-        carouselDom.classList.remove('prev');
-        isRunning = false; 
-    }, timeRunning);
+    listItems[itemActive].classList.add('active');
+    thumbnailItems[itemActive].classList.add('active');
+
+    setTimeout(() => {
+        isRunning = false;
+    }, 1000); 
 }

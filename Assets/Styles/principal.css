@@ -296,19 +296,23 @@
     width: 90%;
 }
 
-.btn-texto-sobre{
-    background-color: var(--second-collor);
+.btn-texto-sobre {
+    background-color: var(--white-collor);
+    color: var(--black-collor);
+    
     padding: 0.5rem 1.5rem;
-    border-radius: 1rem;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 700;
     transition: all 0.2s;
     text-decoration: none;
-    color: var(--white-collor);
+    display: inline-block;
+    border: none;
+}
 
-    &:hover{
-        background-color: #028378;
-    }
+.btn-texto-sobre:hover {
+    background-color: var(--second-collor);
+    color: var(--white-collor);
 }
 
 .carrossel-sobre {
@@ -471,7 +475,6 @@ Equipe
     margin-top: 2rem;
     text-decoration: none;
     color: var(--black-collor);
-    /* border: solid 2px var(--primary-collor); */
 
     &:hover{
         background-color: #028378;
@@ -611,7 +614,8 @@ Competição
     color: var(--black-collor);
 
     &:hover{
-        background-color: #028378;
+        color: var(--white-collor);
+        background-color: var(--second-collor);
     }
   }
 
@@ -620,7 +624,7 @@ Competição
   Resultados
   /////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.section-resultados, .carousel {
+.section-resultados {
     scroll-margin-top: 6rem;
     height: 100vh;
     color: var(--white-collor);
@@ -643,7 +647,7 @@ Competição
     scroll-margin-top: 6rem;
     height: calc(100vh);
     background: rgb(13,13,13);
-    background: linear-gradient(180deg, var(--second-collor) 0%, var(--primary-collor) 100%);
+    background: linear-gradient(180deg, var(--second-collor) 0%, var(--primary-collor) 50%, var(--black-collor) 100%);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -669,7 +673,7 @@ Competição
 
   .section-contato {
     height: 100vh;
-    background: linear-gradient(180deg, rgba(0,102,94,1) 0%, rgba(13,13,13,1) 100%);
+    background: linear-gradient(180deg, var(--black-collor) 0%, var(--second-collor) 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
