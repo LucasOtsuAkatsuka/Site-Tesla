@@ -1,27 +1,89 @@
-
 const targetDate = new Date("July 30, 2026 00:00:01").getTime();
 
-const countdownInterval = setInterval(() => {
+let countdownInterval; 
 
-  const now = new Date().getTime();
+function getTimeRemaining() {
+    const now = new Date().getTime();
+    const timeDifference = targetDate - now;
 
-  const timeDifference = targetDate - now;
+    if (timeDifference < 0) return null;
 
-  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+    return {
+        days: Math.floor(timeDifference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((timeDifference % (1000 * 60)) / 1000)
+    };
+}
 
-  document.getElementById("days").textContent = days;
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("seconds").textContent = seconds;
+function animateValue(id, endValue, duration) {
+    const obj = document.getElementById(id);
+    let startTimestamp = null;
+    
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        
+        obj.textContent = Math.floor(progress * endValue);
+        
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    
+    window.requestAnimationFrame(step);
+}
 
+function startRealTimeCountdown() {
+    if (countdownInterval) clearInterval(countdownInterval);
 
-  if (timeDifference < 0) {
-    clearInterval(countdownInterval);
-    document.getElementById("timer").innerHTML = "Countdown expired";
-  }
-}, 1000);
+    countdownInterval = setInterval(() => {
+        const t = getTimeRemaining();
+
+        if (!t) {
+            clearInterval(countdownInterval);
+            document.getElementById("timer").innerHTML = "A competição começou!";
+            return;
+        }
+
+        document.getElementById("days").textContent = t.days;
+        document.getElementById("hours").textContent = t.hours;
+        document.getElementById("minutes").textContent = t.minutes;
+        document.getElementById("seconds").textContent = t.seconds;
+
+    }, 1000);
+}
+
+const observerTarget = document.querySelector('.timer-competicao');
+
+const observerOptions = {
+    root: null,
+    threshold: 0.3
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const t = getTimeRemaining();
+            
+            if (t) {
+                animateValue("days", t.days, 1000);
+                animateValue("hours", t.hours, 1000);
+                animateValue("minutes", t.minutes, 1000);
+                animateValue("seconds", t.seconds, 1000);
+
+                setTimeout(() => {
+                    startRealTimeCountdown();
+                }, 1000);
+            }
+
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+if (observerTarget) {
+    observer.observe(observerTarget);
+} else {
+    startRealTimeCountdown();
+}
