@@ -489,138 +489,255 @@ Competição
 //////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .section-competicao {
-    scroll-margin-top: 6rem;
-    height: 100vh;
-    background: rgb(0,102,94);
-    background: linear-gradient(var(--black-collor) 0%, var(--second-collor) 100%);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    scroll-margin-top: 6.5rem;
     position: relative;
+    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Garante que o conteúdo não vaze */
+    overflow-x: hidden; 
 }
 
+/* --- TÍTULO (Estilo Neon Tech) --- */
 .titulo-competicao {
     color: var(--white-collor);
+    font-family: "Conthrax", sans-serif; /* Mesma fonte dos anos na Polaroid */
     font-weight: 700;
-    font-size: 4rem;
+    font-size: 3.5rem; /* Ajustado para não ficar gigantesco */
     text-align: center;
-    position: absolute;
-    top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    
+    /* Removemos o absolute para não quebrar o layout em telas menores */
+    position: relative; 
+    margin-bottom: 3rem;
+    top: auto;
+    
+    /* O brilho neon verde conecta com a identidade */
+    text-shadow: 0 0 15px rgba(55, 211, 102, 0.6);
 }
 
+/* Linha decorativa abaixo do título */
+.titulo-competicao::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: var(--primary-collor);
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+/* --- CONTAINER FLEX (Texto + Polaroids) --- */
 .conteudo-competicao {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 10rem;
+    align-items: flex-start; /* Alinha pelo topo para ficar organizado */
+    gap: 6rem; /* Reduzi de 10rem para aproximar visualmente */
     width: 100%;
-    margin-top: 2rem;
+    max-width: 1200px; /* Limita a largura total para não esticar demais */
+    margin: 0 auto;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
 }
 
+/* --- BLOCO DE TEXTO (Estilo Painel Técnico) --- */
 .texto-competicao {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--white-collor);
+    /* Dimensões */
     width: 40rem;
-    background-color: rgba(0, 0, 0, 0.25);
-    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2); 
-    backdrop-filter: blur(20px);
-    padding: 2%;
-    border-radius: 1rem;
+    max-width: 100%;
+    
+    /* Estilo Visual "Dark Tech" */
+    background-color: rgba(13, 13, 13, 0.7); /* Mais escuro e sólido */
+    backdrop-filter: blur(10px);
+    
+    /* Borda lateral verde para conectar com os cards */
+    border-left: 5px solid var(--primary-collor);
+    border-radius: 0 10px 10px 0; /* Canto quadrado na esquerda (onde tem a borda) */
+    
+    /* Espaçamento */
+    padding: 2rem;
+    
+    /* Sombra similar à dos Polaroids para dar a mesma "profundidade" */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    /* Organização interna */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Tipografia do Texto */
+.texto-competicao p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #e0e0e0; /* Branco levemente cinza para não cansar a vista */
+    line-height: 1.6;
+    text-align: justify; /* Texto justificado fica mais "blocado" e técnico */
+    margin: 0;
+}
+
+/* Destaque para a primeira frase ou números (Opcional, se quiser usar <strong> no HTML) */
+.texto-competicao strong {
+    color: var(--primary-collor);
+    font-weight: 600;
 }
 
 
+/* --- CONTAINER PRINCIPAL DO SWIPER --- */
 .swiper-container {
-    width: 500px;
-    height: 400px;
-    margin-top: -3rem;
+    width: 320px;
+    height: 520px; /* Altura ajustada para caber o card + sombra sem cortar */
+    margin-top: -4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+    overflow: visible; /* Essencial para a sombra do card aparecer */
+    padding: 10px; /* Margem de segurança */
+}
 
-  .titulo-provas{
-    color: var(--white-collor);
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    background-color: var(--black-collor);
-    padding: 0.2rem 0.5rem;
-    border-radius: 10px;
-  }
+/* Título acima dos cards */
+.titulo-provas {
+    color: var(--primary-collor);
+    font-family: "Conthrax", sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(55, 211, 102, 0.4);
+    background: transparent;
+    padding: 0;
+    text-align: center;
+}
 
-  .swiper-wrapper {
-    align-items: center;
-  }
-
-  .swiper-slide {
-    width: 300px;
-    height: 200px;
+/* --- O CARD POLAROID (SLIDE) --- */
+.swiper-slide {
+    width: 280px;
+    height: 450px; /* Altura fixa para manter o formato */
+    
+    /* !important garante que sobrescreva qualquer estilo inline antigo */
+    background-color: var(--white-collor) !important; 
+    color: var(--black-collor) !important;
+    
+    border-radius: 4px; /* Cantos pouco arredondados (estilo foto física) */
+    
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha tudo ao topo */
+    align-items: center;
+    
+    /* O Padding cria a moldura branca ao redor da foto */
+    padding: 15px 15px 0 15px; 
+    box-sizing: border-box;
+    
+    /* Sombra para dar profundidade */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ddd; /* Borda fina para definição */
+    
+    transition: transform 0.3s ease-out;
+}
+
+/* --- ÁREA DA IMAGEM --- */
+.polaroid-img {
+    width: 100%;       /* Ocupa toda a largura interna (descontando padding) */
+    height: 260px;     /* Altura fixa da área da foto */
+    background-color: #eee;
+    overflow: hidden;
+    border: 1px solid #ccc; /* Borda interna fina */
+    margin-bottom: 10px;
+}
+
+/* A FOTO EM SI */
+.polaroid-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* O SEGREDO: Preenche o quadrado sem distorcer e sem sobrar espaço */
+    display: block;
+    
+    filter: grayscale(100%); /* Efeito preto e branco nos cards de trás */
+    transition: all 0.4s ease;
+}
+
+/* Efeito quando o slide está ativo (frente) */
+.swiper-slide-active .polaroid-img img {
+    filter: grayscale(0%); /* Fica colorido */
+    transform: scale(1.1); /* Leve zoom */
+}
+
+/* --- ÁREA DE CONTEÚDO (TEXTO) --- */
+.polaroid-content {
+    flex: 1; /* Ocupa o restante do espaço do card */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    font-size: 20px;
-    color: var(--white-collor);
-    font-weight: bold;
-    border-radius: 10px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: solid 2px var(--white-collor);
+}
+
+.polaroid-content h5 {
+    font-family: "Conthrax", sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    color: var(--black-collor); /* Texto preto */
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Linha verde abaixo do ano */
+.polaroid-content h5::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background-color: var(--primary-collor);
+    margin: 5px auto 10px auto;
+}
+
+.polaroid-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #333; /* Cinza escuro para leitura */
+    line-height: 1.4;
+    margin: 0;
     
-    background-color: var(--white-collor);
-  }
+    /* Limita o texto a 3 linhas */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
-  .swiper-container .swiper-slide {
-    transform: scale(0.8); 
-    transition: transform 0.3s ease-in-out;
-  }
+/* Paginação (Bolinhas) */
+.swiper-pagination-bullet-active {
+    background: var(--primary-collor) !important;
+}
 
-  .swiper-container .swiper-slide-active {
-    transform: scale(1); 
-  }
-
-  .swiper-pagination-bullet-active {
-    background: var(--white-collor) !important;
-  }
-
-  .swiper-slide h5 {
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .swiper-slide p {
-    font-size: 1.2rem;
-    font-weight: 400;
-    padding: 2% 4%;
-    margin-top: 1rem;
-  }
-
-  .swiper-slide img {
-    object-fit: contain;
-    height: 220px;
-    width: 500px;
-  }
-
-  .btn-saiba-competicao {
-    background-color: var(--white-collor);
-    padding: 0.5rem 1.5rem;
-    border-radius: 10px;
+/* --- BOTÃO SAIBA MAIS --- */
+.btn-saiba-competicao {
+    align-self: flex-start; /* Alinha à esquerda do bloco de texto */
+    background-color: transparent;
+    border: 2px solid var(--primary-collor); /* Borda verde */
+    color: var(--white-collor);
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    font-family: "Conthrax", sans-serif; /* Fonte Tech */
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
-    font-weight: 700;
-    transition: all 0.2s;
-    margin-top: 2rem;
     text-decoration: none;
-    color: var(--black-collor);
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    text-align: center;
+}
 
-    &:hover{
-        color: var(--white-collor);
-        background-color: var(--second-collor);
-    }
-  }
+.btn-saiba-competicao:hover {
+    background-color: var(--primary-collor);
+    color: var(--black-collor); /* Texto preto no fundo verde */
+    box-shadow: 0 0 15px rgba(55, 211, 102, 0.4); /* Glow no hover */
+}
 
 
   /*/////////////////////////////////////////////////////////////////////////////////////////////////
