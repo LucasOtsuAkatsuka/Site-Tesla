@@ -1,7 +1,6 @@
 @import url(./header.css);
 @import url(./footer.css);
-@import url(./sliderResultados.css);
-@import url(./timerCompeticao.css);
+@import url(./results.css);
 @import url(./home.css);
 @import url(./countdown.css);
 @import url(./aboutus.css);
@@ -11,8 +10,7 @@
 @import url(./contact.css);
 
 @font-face {
-    font-family: 'Conthrax'; /* O nome que você vai chamar no código */
-    /* Atenção ao caminho: o '../' serve para sair da pasta CSS e entrar na fonts */
+    font-family: 'Conthrax';
     src: url('../fonts/Conthrax.otf') format('truetype');
     font-weight: normal;
     font-style: normal;
