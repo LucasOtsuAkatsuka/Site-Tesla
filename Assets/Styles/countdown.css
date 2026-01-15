@@ -1,7 +1,7 @@
 /* --- ESTRUTURA DA SEÇÃO --- */
 .timer-competicao {
     /* Removemos altura fixa para evitar cortes em telas menores */
-    padding: 6rem 0; 
+    padding: 2rem 0; 
     background-color: var(--black-collor);
     
     /* Adiciona um padrão de fundo sutil (grid tech) */

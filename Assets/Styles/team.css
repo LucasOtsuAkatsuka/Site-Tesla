@@ -6,6 +6,7 @@
 }
 
 .section-equipe {
+    scroll-margin-top: 3rem;
     /* Garante que a seção cresça se o conteúdo precisar */
     min-height: 100vh; 
     padding: 3rem 2rem 4rem 2rem; /* Espaço para o título e rodapé */
