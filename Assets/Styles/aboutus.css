@@ -1,0 +1,195 @@
+:root {
+    --primary-collor: rgb(54, 211, 102, 1);
+    --second-collor: rgba(0, 102, 94, 1);
+    --black-collor: rgba(13, 13, 13, 1);
+    --white-collor: rgba(255, 255, 255, 1);
+}
+
+.section-sobre {
+    scroll-margin-top: 2rem;
+    /* Mantém a imagem de fundo, mas escurece mais para destacar o conteúdo */
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, var(--black-collor) 100%), 
+                      url('../images/equipe2025-2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    min-height: 100vh;
+    padding: 6rem 2rem; /* Espaçamento interno generoso */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* --- TÍTULO (Padrão Neon Tech) --- */
+.titulo-sobre {
+    color: var(--white-collor);
+    font-family: "Conthrax", sans-serif; /* Fonte da identidade visual */
+    font-weight: 700;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    
+    /* Removemos absolute para evitar sobreposições */
+    position: relative;
+    margin-bottom: 4rem;
+    top: auto;
+    
+    text-shadow: 0 0 15px rgba(55, 211, 102, 0.6); /* Glow Verde */
+}
+
+/* Linha decorativa abaixo do título */
+.titulo-sobre::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: var(--primary-collor);
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+/* --- CONTAINER DO CONTEÚDO --- */
+.conteudo-sobre {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente texto e carrossel */
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 4rem; /* Espaço entre o texto e as fotos */
+    flex-wrap: wrap; /* Permite quebrar linha no mobile */
+}
+
+/* --- BLOCO DE TEXTO (Estilo Painel Técnico) --- */
+.texto-sobre {
+    width: 35rem; /* Largura controlada */
+    flex: 1; /* Ocupa espaço disponível */
+    min-width: 300px;
+    
+    /* Visual Dark Tech */
+    background-color: rgba(13, 13, 13, 0.85); /* Fundo mais sólido */
+    backdrop-filter: blur(10px);
+    
+    /* Borda lateral verde (Assinatura do design) */
+    border-left: 5px solid var(--primary-collor);
+    border-radius: 0 10px 10px 0;
+    
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.p-texto-sobre {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #e0e0e0;
+    line-height: 1.6;
+    width: 100%;
+    text-align: justify; /* Texto técnico justificado */
+    margin: 0;
+}
+
+/* --- BOTÃO (Estilo Outline Tech) --- */
+.btn-texto-sobre {
+    align-self: flex-start; /* Alinha à esquerda */
+    background-color: transparent;
+    border: 2px solid var(--primary-collor);
+    color: var(--white-collor);
+    
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    font-family: "Conthrax", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-texto-sobre:hover {
+    background-color: var(--primary-collor);
+    color: var(--black-collor);
+    box-shadow: 0 0 15px rgba(55, 211, 102, 0.4);
+}
+
+/* --- CARROSSEL (Moldura Tech) --- */
+.carrossel-sobre {
+    width: 30rem; /* Largura fixa para manter proporção */
+    height: 20rem;
+    max-width: 100%;
+    
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    
+    /* Moldura para destacar do fundo */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.carrossel-imagens {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    animation: slide 15s infinite cubic-bezier(0.45, 0, 0.55, 1); /* Animação mais suave */
+}
+
+.carrossel-item {
+    flex: 0 0 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Overlay escuro opcional sobre as imagens para não brigar com o texto */
+.carrossel-item::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.carrossel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- ANIMAÇÃO DO SLIDER (Mantida e Ajustada) --- */
+@keyframes slide {
+    0%, 20% { transform: translateX(0); }
+    25%, 45% { transform: translateX(-100%); }
+    50%, 70% { transform: translateX(-200%); }
+    75%, 95% { transform: translateX(-300%); }
+    100% { transform: translateX(-400%); }
+}
+
+/* --- RESPONSIVIDADE --- */
+@media screen and (max-width: 900px) {
+    .conteudo-sobre {
+        flex-direction: column-reverse; /* Carrossel em cima, texto embaixo no mobile */
+        gap: 2rem;
+    }
+    
+    .texto-sobre {
+        width: 100%;
+        border-left: none;
+        border-top: 5px solid var(--primary-collor); /* Borda muda para o topo */
+        border-radius: 0 0 10px 10px;
+    }
+    
+    .carrossel-sobre {
+        width: 100%;
+        height: 15rem;
+    }
+}

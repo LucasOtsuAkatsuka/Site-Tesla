@@ -1,16 +1,42 @@
+/* --- VARIÁVEIS GLOBAIS (Caso não estejam no main.css) --- */
 :root {
-    --primary-collor: rgb(55, 211, 102);
-    --second-collor: rgb(0, 102, 94);
-    --black-collor: rgb(13, 13, 13);
+    --primary-collor: rgb(55, 211, 102); /* Verde Neon */
+    --second-collor: rgb(0, 102, 94);    /* Teal Escuro */
+    --black-collor: rgb(13, 13, 13);     /* Preto Fundo */
     --white-collor: #FFFFFF;
 }
 
+/* --- ESTRUTURA DA SEÇÃO --- */
+.section-resultados {
+    scroll-margin-top: 2rem;
+    height: auto;
+    min-height: 100vh;
+    background-color: var(--black-collor);
+    position: relative;
+    overflow: hidden;
+    color: var(--white-collor);
+}
+
+.titulo-resultados {
+    color: var(--white-collor);
+    font-weight: 500;
+    font-size: 4rem;
+    text-align: center;
+    position: absolute;
+    top: 8rem;
+    z-index: 10;
+    width: 100%;
+    pointer-events: none; /* Deixa clicar no que estiver atrás */
+}
+
+/* --- CARROSSEL (Container) --- */
 .carousel {
-    height: calc(100vh - 6rem);
+    height: 100vh; /* Ocupa a tela inteira */
     overflow: hidden;
     position: relative;
 }
 
+/* --- LISTA DE SLIDES (Imagens de Fundo) --- */
 .carousel .list .item {
     width: 100%;
     height: 100%;
@@ -21,12 +47,14 @@
     transition: opacity 0.5s;
 }
 
+/* OVERLAY (Vinheta): Deixa o centro limpo para o carro e escurece as bordas */
 .carousel .list .item::after {
     content: "";
     position: absolute;
     inset: 0 0 0 0;
     
-    background: linear-gradient(to bottom, transparent 80%, var(--black-collor) 100%);
+    /* Centro (60%) transparente -> Bordas escuras */
+    background: radial-gradient(circle, transparent 50%, rgba(13,13,13,0.9) 100%);
     
     z-index: 2;
     pointer-events: none;
@@ -44,47 +72,51 @@
     display: block;
 }
 
+/* Animação Cinematic (Zoom Suave) */
 .carousel .list .item.active img {
     transform: scale(1.15);
     animation: cinematicIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 @keyframes cinematicIn {
-    to {
-        transform: scale(1);
-    }
+    to { transform: scale(1); }
 }
 
+/* --- CONTEÚDO (PAINEL TECH À DIREITA) --- */
 .carousel .list .item .content {
     position: absolute;
-    top: 25%; 
-    right: 5%;
-    left: auto; 
-    width: fit-content;
+    top: 20%; 
+    right: 5%; /* Fixo na direita */
+    width: 30rem;
     max-width: 80%;
-    box-sizing: border-box;
+    
+    /* Estilo Painel de Dados */
+    background-color: rgba(13, 13, 13, 0.9); /* Fundo escuro sólido */
+    backdrop-filter: blur(10px);
+    
+    /* Borda Verde na Direita (onde "nasce" o painel) */
+    border-right: 5px solid var(--primary-collor); 
+    border-radius: 10px 0 0 10px; /* Cantos arredondados na esquerda */
+    
+    padding: 2.5rem;
+    box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.5); /* Sombra projetada para a esquerda */
+    
     color: var(--white-collor);
-    text-shadow: 0 5px 10px rgba(13,13,13,0.5);
-    text-align: right;
-    padding: 3%;
-    border-radius: 10px;
+    text-align: right; /* Texto alinhado à borda verde */
     
     opacity: 0;
     pointer-events: none;
-    
-    background-color: rgba(13, 13, 13, 0.4);
-    box-shadow: inset 0 0 5px rgba(13, 13, 13, 0.2); 
-    backdrop-filter: blur(8px);
-
     z-index: 3;
 }
 
+/* Entrada do Conteúdo */
 .carousel .list .item.active .content {
     opacity: 1;
     pointer-events: auto;
     transition: opacity 0.5s 0.5s;
 }
 
+/* Animação dos Elementos de Texto */
 .carousel .list .item.active .content .author,
 .carousel .list .item.active .content .title,
 .carousel .list .item.active .content .topic,
@@ -104,21 +136,58 @@
     }
 }
 
+/* --- TIPOGRAFIA DO CONTEÚDO --- */
 .carousel .list .item .author {
-    font-weight: bold;
-    letter-spacing: 10px;
-}
-.carousel .list .item .title, .carousel .list .item .topic {
-    font-size: 5em;
-    font-weight: bold;
-    line-height: 1.3em;
-}
-.carousel .list .item .topic {
-    font-family: "Conthrax";
-    font-weight: 700;
-    color: var(--primary-collor);
+    font-family: "Conthrax", sans-serif;
+    font-size: 1.5rem;
+    color: var(--white-collor);
+    margin-bottom: 0.5rem;
+    display: block;
+    letter-spacing: 2px;
 }
 
+/* Nome do Carro */
+.carousel .list .item .topic {
+    font-family: "Conthrax", sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1em;
+    color: var(--primary-collor);
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(55, 211, 102, 0.6); /* Glow Neon */
+    margin-bottom: 1.5rem;
+}
+
+/* Lista de Resultados (Ficha Técnica) */
+.carousel .list .item .des ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinha itens à direita */
+    gap: 0.8rem;
+}
+
+.carousel .list .item .des li {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #e0e0e0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+/* Marcador estilo seta no final da linha */
+.carousel .list .item .des li::after {
+    content: '<'; 
+    color: var(--primary-collor);
+    margin-left: 10px;
+    font-family: "Conthrax", sans-serif;
+    font-weight: bold;
+}
+
+/* --- BOTÃO (Outline Tech) --- */
 .carousel .list .item .buttons {
     display: flex;
     justify-content: flex-end;
@@ -127,57 +196,62 @@
 }
 
 .carousel .list .item .buttons button {
-    background-color: var(--white-collor);
-    color: var(--black-collor);
+    background-color: transparent;
+    color: var(--white-collor);
+    border: 2px solid var(--primary-collor);
     
-    border: none; 
-    
-    padding: 0.5rem 1.5rem;
-    border-radius: 10px;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
     cursor: pointer;
     font-weight: 700;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     
-    font-family: 'Poppins', sans-serif; 
+    font-family: "Conthrax", sans-serif; 
     font-size: 1rem;
+    letter-spacing: 1px;
 }
 
 .carousel .list .item .buttons button:hover {
-    background-color: var(--second-collor);
-    color: var(--white-collor);
+    background-color: var(--primary-collor);
+    color: var(--black-collor);
+    box-shadow: 0 0 15px rgba(55, 211, 102, 0.4);
 }
 
-.carousel .list .item .des ul {
-    list-style: none;
-}
-
+/* --- THUMBNAILS (MENU LATERAL ESQUERDO) --- */
 .thumbnail {
     position: absolute;
-    top: 5%; 
-    right: 5%;
+    
+    /* Centralizado Verticalmente na Esquerda */
+    top: 50%; 
+    left: 2rem; 
+    transform: translateY(-50%);
+    
     display: flex;
+    flex-direction: column; /* Lista Vertical */
+    gap: 15px;
     z-index: 100;
 }
 
 .thumbnail .item {
-    width: 160px;
-    height: 100px;
-    margin-left: 15px;
+    width: 120px;
+    height: 80px;
     
     flex-shrink: 0;
     position: relative;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
     
-    border: 2px solid var(--black-collor);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    transition: all 0.5s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+    transition: all 0.4s ease;
 }
 
+/* Lógica: Item Ativo colapsa e some da lista */
 .thumbnail .item.active {
     width: 0;
-    margin-left: 0;
+    height: 0;
+    margin: 0;
     border: none;
     opacity: 0;
     pointer-events: none;
@@ -187,38 +261,77 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.7);
+    filter: brightness(0.5) grayscale(100%); /* Inativo: Escuro e PB */
     transition: 0.3s;
 }
+
+/* Hover na Thumbnail */
 .thumbnail .item:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateX(10px); /* Pula para direita */
     border-color: var(--primary-collor);
-    border-width: 2px;
-}
-.thumbnail .item:hover img {
-    filter: brightness(1);
 }
 
+.thumbnail .item:hover img {
+    filter: brightness(1) grayscale(0%); /* Ativo: Colorido */
+}
+
+/* Conteúdo da Thumbnail (Ano) */
 .thumbnail .item .content {
     position: absolute;
-    bottom: 0; left: 0; right: 0; top: auto;
-    padding: 5px 10px;
-    background: rgba(0, 0, 0, 0.7);
-    width: 100%;
+    bottom: 0; left: 0; right: 0;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
 }
-.thumbnail .item .content .title {
-    font-size: 0.9rem;
-    font-family: "Conthrax";
-    font-weight: 700;
-    color: var(--primary-collor);
-}
+.thumbnail .item .content .title { display: none; } /* Oculta nome para limpar visual */
 .thumbnail .item .content .description {
-    font-family: "Helvetica";
-    font-weight: 300;
+    font-family: "Conthrax";
+    font-size: 0.8rem;
     color: var(--white-collor);
 }
 
+/* --- RESPONSIVIDADE (Mobile) --- */
 @media screen and (max-width: 678px) {
-    .carousel .list .item .content { padding-right: 0; }
-    .carousel .list .item .content .title { font-size: 30px; }
+    /* 1. Painel de Texto vai para baixo */
+    .carousel .list .item .content {
+        top: auto;
+        bottom: 120px; /* Acima das thumbnails */
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        
+        border-right: none;
+        border-left: 5px solid var(--primary-collor); /* Inverte a borda */
+        border-radius: 0 10px 10px 0;
+        
+        text-align: left; /* Inverte texto */
+        padding: 1.5rem;
+    }
+    
+    .carousel .list .item .des ul { align-items: flex-start; }
+    .carousel .list .item .buttons { justify-content: flex-start; }
+    .carousel .list .item .topic { font-size: 2.5rem; }
+
+    /* 2. Thumbnails voltam para baixo na horizontal */
+    .thumbnail {
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        width: 95%;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 10px; /* Espaço para scrollbar se houver */
+    }
+    
+    .thumbnail .item {
+        width: 80px;
+        height: 60px;
+    }
+    
+    .thumbnail .item:hover {
+        transform: scale(1.1) translateY(-5px);
+    }
 }

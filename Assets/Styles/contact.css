@@ -1,0 +1,248 @@
+.section-contato {
+    min-height: 100vh;
+    
+    /* Fundo Dark Tech com Grid */
+    background-color: var(--black-collor);
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-collor);
+    position: relative;
+    padding: 3rem 2rem 4rem 2rem;
+}
+
+/* --- TÍTULO --- */
+.titulo-contato {
+    font-family: "Conthrax", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--white-collor);
+    margin-bottom: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+    position: relative;
+    text-shadow: 0 0 15px rgba(55, 211, 102, 0.6);
+}
+
+.titulo-contato::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: var(--primary-collor);
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+/* --- CONTAINER GERAL --- */
+.container-contato {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+}
+
+/* --- MOLDURA DO FORMULÁRIO (Painel Tech) --- */
+.formulario-contato {
+    background-color: rgba(13, 13, 13, 0.9);
+    backdrop-filter: blur(10px);
+    
+    border: 1px solid rgba(55, 211, 102, 0.3);
+    border-left: 4px solid var(--primary-collor);
+    border-radius: 10px;
+    
+    padding: 2.5rem;
+    width: 50%;
+    min-width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    
+    box-sizing: border-box; /* Garante que padding não afete largura */
+}
+
+/* --- A CORREÇÃO DE ALINHAMENTO (Flexbox na tag Form) --- */
+/* Isso força todos os inputs a terem exatamente a mesma largura do pai */
+.form-contato-google {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.formulario-contato label {
+    display: block;
+    font-family: "Conthrax", sans-serif;
+    font-size: 0.9rem;
+    color: var(--primary-collor);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+/* --- CAMPOS DO FORMULÁRIO (Inputs e Textarea) --- */
+.formulario-contato input,
+.formulario-contato textarea {
+    width: 100%;
+    min-width: 100%; /* Força largura mínima total */
+    max-width: 100%; /* Impede vazar */
+    
+    box-sizing: border-box; /* Padding conta dentro do tamanho */
+    
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 5px;
+    
+    color: var(--white-collor);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Regras específicas para o Textarea */
+.formulario-contato textarea {
+    resize: vertical; /* Bloqueia redimensionamento horizontal */
+    min-height: 120px;
+    max-height: 400px;
+}
+
+/* Foco nos campos (Glow Verde) */
+.formulario-contato input:focus,
+.formulario-contato textarea:focus {
+    outline: none;
+    border-color: var(--primary-collor);
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: 0 0 10px rgba(55, 211, 102, 0.2);
+}
+
+/* Botão Enviar */
+.btn-enviar {
+    width: 100%;
+    padding: 1rem;
+    background-color: transparent;
+    border: 2px solid var(--primary-collor);
+    border-radius: 5px;
+    
+    font-family: "Conthrax", sans-serif;
+    font-size: 1.1rem;
+    color: var(--white-collor);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn-enviar:hover {
+    background-color: var(--primary-collor);
+    color: var(--black-collor);
+    box-shadow: 0 0 20px rgba(55, 211, 102, 0.5);
+}
+
+/* --- COLUNA DIREITA (Outras Formas de Contato) --- */
+.outras-formas-contato {
+    width: 40%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.outras-formas-contato h3 {
+    font-family: "Conthrax", sans-serif;
+    font-size: 1.8rem;
+    color: var(--white-collor);
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.cards-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* CARD INDIVIDUAL */
+.card-contato {
+    display: flex;
+    align-items: center;
+    
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--white-collor);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover no Card */
+.card-contato:hover {
+    transform: translateX(10px); /* Move para a direita */
+    border-color: var(--primary-collor);
+    background-color: rgba(55, 211, 102, 0.1);
+    box-shadow: 0 0 20px rgba(55, 211, 102, 0.2);
+}
+
+/* Ícone */
+.card-contato i {
+    font-size: 2.5rem;
+    margin-right: 1.5rem;
+    color: var(--primary-collor);
+    transition: transform 0.3s;
+}
+
+.card-contato:hover i {
+    transform: scale(1.1);
+}
+
+/* Texto do Card */
+.card-contato .texto-card h4 {
+    font-family: "Conthrax", sans-serif;
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--white-collor);
+}
+
+.card-contato .texto-card p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media screen and (max-width: 900px) {
+    .container-contato {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+    }
+    
+    .formulario-contato, 
+    .outras-formas-contato {
+        width: 100%;
+        min-width: 0;
+    }
+    
+    .outras-formas-contato h3 {
+        text-align: center;
+    }
+    
+    .titulo-contato {
+        font-size: 2.5rem;
+    }
+}

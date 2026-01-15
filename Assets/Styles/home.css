@@ -1,0 +1,230 @@
+:root {
+    --primary-collor: rgb(54, 211, 102, 1);
+    --second-collor: rgba(0, 102, 94, 1);
+    --black-collor: rgba(13, 13, 13, 1);
+    --white-collor: rgba(255, 255, 255, 1);
+}
+
+.section-home {
+    scroll-margin-top: 6rem;
+    height: calc(100vh - 6rem); /* Altura total menos o header */
+    min-height: 600px; /* Garante altura mínima */
+    
+    /* BACKGROUND COMPLEXO: */
+    /* 1. Gradiente suave vindo de cima para baixo */
+    /* 2. Gradiente vindo de baixo para integrar com a próxima seção */
+    /* 3. Vinheta radial para escurecer as bordas */
+    /* 4. A Imagem de fundo */
+    background-image: 
+        linear-gradient(to bottom, var(--black-collor) 0%, transparent 20%),
+        linear-gradient(to top, var(--black-collor) 5%, transparent 40%),
+        radial-gradient(circle, rgba(0,0,0,0.1) 0%, var(--black-collor) 95%),
+        url('../images/foto_mineirao.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden; /* Corta elementos que saiam da tela */
+}
+
+/* --- ANIMAÇÃO DE FUNDO (Ícones Caindo) --- */
+.wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Fica atrás do texto */
+    pointer-events: none;
+}
+
+.round {
+    position: absolute;
+    top: -10%;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    animation: animateDrop 8s linear infinite;
+}
+
+.round i {
+    color: var(--primary-collor); /* Ícones Verdes */
+    font-size: 1.5rem;
+    opacity: 0.3; /* Transparência para não poluir */
+    text-shadow: 0 0 10px var(--primary-collor);
+}
+
+/* Configuração aleatória de queda */
+.round:nth-child(1)  { left: 5%;   animation-duration: 9s;  animation-delay: 0s; }
+.round:nth-child(2)  { left: 15%;  animation-duration: 7s;  animation-delay: 4s; }
+.round:nth-child(3)  { left: 25%;  animation-duration: 10s; animation-delay: 2s; }
+.round:nth-child(4)  { left: 35%;  animation-duration: 8s;  animation-delay: 6s; }
+.round:nth-child(5)  { left: 45%;  animation-duration: 11s; animation-delay: 1s; }
+.round:nth-child(6)  { left: 55%;  animation-duration: 6s;  animation-delay: 3s; }
+.round:nth-child(7)  { left: 65%;  animation-duration: 9s;  animation-delay: 7s; }
+.round:nth-child(8)  { left: 75%;  animation-duration: 12s; animation-delay: 5s; }
+.round:nth-child(9)  { left: 85%;  animation-duration: 8s;  animation-delay: 2s; }
+.round:nth-child(10) { left: 95%;  animation-duration: 10s; animation-delay: 0s; }
+
+@keyframes animateDrop {
+    0% {
+        top: -10%;
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+    20% { opacity: 0.6; }
+    50% { opacity: 0.2; }
+    100% {
+        top: 110%;
+        opacity: 0;
+        transform: rotate(360deg);
+    }
+}
+
+/* --- BLOCO DE TEXTO CENTRAL --- */
+.div-texto-home {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    position: relative;
+    z-index: 10; /* Texto acima da animação */
+    
+    /* Vidro Tech (Transparente para ver o fundo) */
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(3px);
+    
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 0 50px rgba(0,0,0,0.6);
+    
+    /* POSICIONAMENTO ESTRATÉGICO: */
+    /* Empurra o bloco para cima para limpar a visão do carro */
+    margin-bottom: 35vh; 
+}
+
+/* TÍTULO PRINCIPAL (VERDE NEON) */
+.titulo-texto-home {
+    color: var(--primary-collor); /* Verde Destaque */
+    
+    /* Tamanho responsivo: Mín 2.5rem, Ideal 6vw, Máx 5rem */
+    font-size: clamp(2.5rem, 6vw, 5rem); 
+    
+    font-family: "Conthrax", sans-serif;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+    
+    /* Glow Neon Intenso */
+    text-shadow: 
+        0 0 10px rgba(55, 211, 102, 0.6),
+        0 0 30px rgba(55, 211, 102, 0.3);
+}
+
+/* SUBTÍTULO: FSAE EV TEAM (BRANCO) */
+.subtitulo-texto-home {
+    color: var(--white-collor);
+    margin: 0;
+}
+
+.texto-home-strong {
+    font-family: "Conthrax", sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: inherit; /* Herda o branco */
+}
+
+/* SUBTÍTULO: UFMG (CINZA CLARO) */
+.subtitulo-texto-home-2 {
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    letter-spacing: 5px;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* --- BOTÃO INSTAGRAM (ESTILO TECH) --- */
+.link-instagram {
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.contatos-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    
+    /* Estilo Outline: Fundo transparente, Borda Verde */
+    background-color: transparent;
+    border: 2px solid var(--primary-collor);
+    border-radius: 5px;
+    
+    padding: 0.8rem 2rem;
+    width: auto;
+    height: auto;
+    
+    color: var(--white-collor);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* Ícone e Texto */
+.contatos-home i { font-size: 1.5rem; transition: color 0.3s; }
+.contatos-home p {
+    margin: 0;
+    font-family: "Conthrax", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Hover: Preenche de verde */
+.contatos-home:hover {
+    background-color: var(--primary-collor);
+    box-shadow: 0 0 20px rgba(55, 211, 102, 0.5);
+    transform: translateY(-3px);
+}
+
+.contatos-home:hover p, 
+.contatos-home:hover i,
+.contatos-home:hover #texto-instagram, 
+.contatos-home:hover #icone-instagram {
+    color: var(--black-collor) !important; /* !important garante que funcione */
+    transition: color 0.1s ease;
+}
+
+/* Limpeza de IDs antigos */
+#icone-instagram, #texto-instagram {
+    color: inherit;
+    margin: 0;
+}
+
+/* --- AJUSTE MOBILE --- */
+@media screen and (max-width: 768px) {
+    .div-texto-home {
+        /* No celular, sobe menos para não sair da tela */
+        margin-bottom: 15vh; 
+        padding: 2rem;
+        width: 85%;
+    }
+    
+    .titulo-texto-home {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+    }
+}

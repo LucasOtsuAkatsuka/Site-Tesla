@@ -1,0 +1,145 @@
+/* --- ESTRUTURA DA SEÇÃO --- */
+.timer-competicao {
+    /* Removemos altura fixa para evitar cortes em telas menores */
+    padding: 6rem 0; 
+    background-color: var(--black-collor);
+    
+    /* Adiciona um padrão de fundo sutil (grid tech) */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Container Central */
+#countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 3rem;
+    width: 100%;
+}
+
+/* --- TÍTULOS ("FALTAM" / "PARA A COMPETIÇÃO") --- */
+#timer-tittle {
+    margin: 0; /* Remove margem padrão */
+}
+
+#countdown h2 {
+    font-family: "Conthrax", sans-serif; /* Fonte Tech */
+    font-size: 2.5rem;
+    color: var(--white-collor);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Destaque para a palavra "Competição" se quiser usar span, 
+   mas aqui estilizamos o h2 de baixo */
+#countdown h2:last-child {
+    color: var(--primary-collor); /* Verde para destacar o objetivo */
+    text-shadow: 0 0 15px rgba(55, 211, 102, 0.4);
+}
+
+/* --- CONTAINER DOS NÚMEROS --- */
+#timer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Espaçamento entre os blocos */
+    flex-wrap: wrap; /* Permite quebrar linha se necessário */
+}
+
+/* --- BLOCOS DE TEMPO (Módulos) --- */
+#timer div {
+    /* Visual Dark Glass Tech */
+    background-color: rgba(13, 13, 13, 0.8);
+    backdrop-filter: blur(5px);
+    
+    width: 10rem; /* Largura fixa para manter alinhamento */
+    height: 10rem; /* Quadrado perfeito */
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 4px solid var(--primary-collor); /* Base sólida verde */
+    border-radius: 8px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito Hover nos Blocos */
+#timer div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(55, 211, 102, 0.15);
+    border-color: var(--primary-collor); /* Borda toda fica verde */
+}
+
+/* --- OS NÚMEROS --- */
+#timer span:first-child {
+    font-family: "Conthrax", sans-serif;
+    font-size: 4rem; /* Número bem grande */
+    font-weight: 700;
+    color: var(--primary-collor); /* Verde Neon */
+    line-height: 1;
+    
+    text-shadow: 0 0 20px rgba(55, 211, 102, 0.4); /* Glow */
+    margin-bottom: 0.5rem;
+}
+
+/* --- OS RÓTULOS (Dias, Horas...) --- */
+#timer span:last-child {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888; /* Cinza para não brigar com o número */
+    font-weight: 500;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media screen and (max-width: 768px) {
+    .timer-competicao {
+        padding: 4rem 1rem;
+    }
+
+    #countdown h2 {
+        font-size: 1.5rem;
+    }
+
+    #timer {
+        gap: 1rem;
+    }
+
+    #timer div {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    #timer span:first-child {
+        font-size: 2.5rem;
+    }
+    
+    #timer span:last-child {
+        font-size: 0.75rem;
+    }
+}
+
+/* Ajuste para telas muito pequenas (celulares antigos) */
+@media screen and (max-width: 400px) {
+    #timer div {
+        width: 40%; /* Ocupa quase metade da tela cada um */
+        height: auto;
+        padding: 1rem 0;
+    }
+}

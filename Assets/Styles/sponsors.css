@@ -1,0 +1,138 @@
+.section-patrocinios {
+    scroll-margin-top: 6rem;
+    min-height: 100vh;
+    padding: 3rem 2rem 6rem 2rem;
+    
+    /* Fundo Dark Tech (Contraste com os cards claros) */
+    background: radial-gradient(circle at center, #1f1f1f 0%, var(--black-collor) 90%);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* --- TÍTULO --- */
+.titulo-patrocinios {
+    color: var(--white-collor);
+    font-family: "Conthrax", sans-serif;
+    font-weight: 700;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 4rem;
+    position: relative;
+    text-shadow: 0 0 15px rgba(55, 211, 102, 0.6);
+}
+
+.titulo-patrocinios::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: var(--primary-collor);
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+/* --- GRID RESPONSIVO --- */
+.logos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1300px;
+}
+
+/* --- O CARD (Display Branco Tech) --- */
+.logo-item {
+    width: 220px;
+    height: 130px;
+    
+    /* Fundo Branco: Garante que logos pretas/escuras apareçam */
+    background: #ffffff; 
+    
+    /* Borda sutil para não ficar "chapado" */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    
+    /* Sombra para destacar do fundo preto do site */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover: O card "acende" com a borda verde */
+.logo-item:hover {
+    border-color: var(--primary-collor); /* Borda Verde Neon */
+    transform: translateY(-5px); /* Flutua */
+    
+    /* Glow verde ao redor do card branco */
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(55, 211, 102, 0.4); 
+}
+
+/* --- A LOGO (Colorida e Adaptável) --- */
+.logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    
+    /* SEM FILTROS DE COR: As cores originais aparecem vivas */
+    filter: none; 
+    
+    /* TRUQUE MÁGICO PARA MANUTENÇÃO: */
+    /* Se a logo for JPG com fundo branco, isso remove o fundo branco visualmente */
+    mix-blend-mode: multiply; 
+    
+    transition: transform 0.3s ease;
+}
+
+/* Leve zoom ao passar o mouse */
+.logo-item:hover img {
+    transform: scale(1.1);
+}
+
+/* --- BOTÃO (Seja um parceiro) --- */
+.btn-seja-patrocinador {
+    margin-top: 5rem;
+    text-decoration: none;
+    font-family: "Conthrax", sans-serif;
+    font-size: 1.2rem;
+    color: var(--white-collor);
+    padding: 1rem 3rem;
+    border: 2px solid var(--primary-collor);
+    border-radius: 5px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-seja-patrocinador:hover {
+    background: var(--primary-collor);
+    color: var(--black-collor);
+    box-shadow: 0 0 20px rgba(55, 211, 102, 0.5);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media screen and (max-width: 768px) {
+    .section-patrocinios { padding: 6rem 1rem; }
+    .logos-grid { gap: 1rem; }
+    
+    .logo-item {
+        width: 150px; /* Menor no celular */
+        height: 100px;
+        padding: 1rem;
+    }
+    
+    .titulo-patrocinios { font-size: 2.5rem; }
+}

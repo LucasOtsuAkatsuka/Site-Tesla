@@ -1,8 +1,14 @@
 @import url(./header.css);
-@import url(./principal.css);
 @import url(./footer.css);
 @import url(./sliderResultados.css);
 @import url(./timerCompeticao.css);
+@import url(./home.css);
+@import url(./countdown.css);
+@import url(./aboutus.css);
+@import url(./team.css);
+@import url(./competition.css);
+@import url(./sponsors.css);
+@import url(./contact.css);
 
 @font-face {
     font-family: 'Conthrax'; /* O nome que você vai chamar no código */
