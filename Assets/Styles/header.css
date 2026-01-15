@@ -42,3 +42,27 @@
         color: var(--primary-collor);
     }
 }
+
+.items-navegacao.active {
+    color: var(--primary-collor);
+    text-shadow: 0 0 10px rgba(55, 211, 102, 0.4); /* Glow leve */
+    position: relative;
+}
+
+/* Opcional: Um traço neon embaixo do link ativo */
+.items-navegacao.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Ajuste a distância */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-collor);
+    box-shadow: 0 0 10px var(--primary-collor);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { width: 0; opacity: 0; }
+    to { width: 100%; opacity: 1; }
+}
