@@ -1,42 +1,62 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Seleciona todos os links do menu e todas as seções
-    const navLinks = document.querySelectorAll('.items-navegacao');
+    
+    // --- 1. LÓGICA DE DESTAQUE NO MENU (SCROLL SPY) ---
     const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.items-navegacao');
+    const headerHeight = document.querySelector('.header').offsetHeight;
 
-    // 2. Configuração do Observador
-    // rootMargin: "-100px..." cria uma linha imaginária 100px abaixo do topo.
-    // Isso compensa a altura do seu Header (6rem = aprox 96px).
-    const options = {
-        threshold: 0.2, // Ativa quando 20% da seção estiver visível
-        rootMargin: "-100px 0px -50% 0px" 
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // Se a seção entrou na área de visão definida
-            if (entry.isIntersecting) {
-                // Pega o ID da seção atual
-                const id = entry.target.getAttribute('id');
-                
-                // Remove a classe 'active' de todos os links
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-
-                // Adiciona a classe 'active' APENAS no link correspondente
-                // Procura o link que tem o href igual ao id da seção (ex: href="#sobre")
-                const activeLink = document.querySelector(`.items-navegacao[href="#${id}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            // O "- headerHeight - 100" serve para trocar a cor um pouco antes da seção bater no topo
+            if (scrollY >= (sectionTop - headerHeight - 150)) {
+                current = section.getAttribute('id');
             }
         });
-    }, options);
 
-    // 3. Começa a observar cada seção que tenha um ID
-    sections.forEach(section => {
-        if(section.getAttribute('id')) {
-            observer.observe(section);
+        // Correção específica para a Home:
+        // Se estivermos na primeira tela (antes de descer tudo), mantém Home ativo
+        if (scrollY < window.innerHeight) {
+            current = 'home';
         }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
     });
+
+    // --- 2. CLIQUE NO BOTÃO "INÍCIO" (SCROLL PARA O TEXTO) ---
+    const homeLink = document.querySelector('a[href="#home"]');
+    
+    if (homeLink) {
+        homeLink.addEventListener('click', (e) => {
+            e.preventDefault(); // Impede o pulo padrão para o topo (0px)
+            
+            // Rola exatamente para a altura de 1 tela (100vh)
+            // É lá que o texto começa na nossa configuração de Parallax
+            window.scrollTo({
+                top: window.innerHeight, 
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // --- 3. ANIMAÇÃO DE ENTRADA DO TEXTO (MANTIDA) ---
+    const textContainer = document.querySelector('.div-texto-home');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                textContainer.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 }); // Sensibilidade alta para detectar logo
+
+    if(textContainer) observer.observe(textContainer);
 });

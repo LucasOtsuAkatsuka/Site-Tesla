@@ -1,4 +1,4 @@
-const targetDate = new Date("July 30, 2026 00:00:01").getTime();
+const targetDate = new Date("July 29, 2026 00:00:01").getTime();
 
 let countdownInterval; 
 
