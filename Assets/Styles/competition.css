@@ -1,251 +1,389 @@
+/* =========================================
+   SEÇÃO COMPETIÇÃO (FINAL - COLORIDO & 100VH)
+   ========================================= */
+
+:root {
+    --header-height: 90px; 
+}
+
 .section-competicao {
-    scroll-margin-top: 4rem;
-    position: relative;
-    padding-bottom: 4rem;
+    /* TRAVA DE ALTURA: Ocupa exatamente 100% da tela */
+    height: 100vh;
+    min-height: 600px;
+    
+    padding-top: var(--header-height);
+    padding-bottom: 1.5rem;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Garante que o conteúdo não vaze */
-    overflow-x: hidden; 
+    
+    background-color: var(--black-collor);
+    overflow: hidden; /* Impede rolagem na página principal */
+    z-index: 2;
+    position: relative;
 }
 
-/* --- TÍTULO (Estilo Neon Tech) --- */
+/* --- TÍTULO --- */
 .titulo-competicao {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    
     color: var(--white-collor);
-    font-family: "Conthrax", sans-serif; /* Mesma fonte dos anos na Polaroid */
+    font-family: "Conthrax", sans-serif;
     font-weight: 700;
-    font-size: 3.5rem; /* Ajustado para não ficar gigantesco */
-    text-align: center;
+    font-size: clamp(1.5rem, 3.5rem, 4.5rem); 
     text-transform: uppercase;
     letter-spacing: 4px;
-    
-    /* Removemos o absolute para não quebrar o layout em telas menores */
-    position: relative; 
-    margin-bottom: 3rem;
-    top: auto;
-    
-    /* O brilho neon verde conecta com a identidade */
+    text-align: center;
     text-shadow: 0 0 15px rgba(55, 211, 102, 0.6);
+    flex-shrink: 0; 
 }
 
-/* Linha decorativa abaixo do título */
 .titulo-competicao::after {
     content: '';
     display: block;
-    width: 100px;
-    height: 4px;
+    width: 80px;
+    height: 3px;
     background-color: var(--primary-collor);
-    margin: 10px auto 0 auto;
+    margin: 5px auto 0 auto;
     border-radius: 2px;
+    box-shadow: 0 0 10px var(--primary-collor);
 }
 
-/* --- CONTAINER FLEX (Texto + Polaroids) --- */
-.conteudo-competicao {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Alinha pelo topo para ficar organizado */
-    gap: 6rem; /* Reduzi de 10rem para aproximar visualmente */
+/* --- GRID PRINCIPAL (LAYOUT TETRIS) --- */
+.competicao-dashboard {
+    flex: 1; 
     width: 100%;
-    max-width: 1200px; /* Limita a largura total para não esticar demais */
-    margin: 0 auto;
-    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    max-width: 1600px; 
+    padding: 0 2rem;
+    
+    display: grid;
+    
+    /* COLUNAS: Menu | Flex | Flex | Galeria Larga */
+    grid-template-columns: 260px 1.2fr 0.8fr 380px; 
+    
+    /* LINHAS INDEPENDENTES: Ajuste a altura de cada linha aqui */
+    grid-template-rows: 45% 52%; 
+    
+    gap: 1.2rem;
+    min-height: 0; 
 }
 
-/* --- BLOCO DE TEXTO (Estilo Painel Técnico) --- */
-.texto-competicao {
-    /* Dimensões */
-    width: 40rem;
-    max-width: 100%;
-    
-    /* Estilo Visual "Dark Tech" */
-    background-color: rgba(13, 13, 13, 0.7); /* Mais escuro e sólido */
+/* =========================================
+   ESTILO GERAL DOS CARDS
+   ========================================= */
+.dashboard-item {
+    background-color: rgba(13, 13, 13, 0.6);
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.2rem;
     
-    /* Borda lateral verde para conectar com os cards */
-    border-left: 5px solid var(--primary-collor);
-    border-radius: 0 10px 10px 0; /* Canto quadrado na esquerda (onde tem a borda) */
-    
-    /* Espaçamento */
-    padding: 2rem;
-    
-    /* Sombra similar à dos Polaroids para dar a mesma "profundidade" */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    
-    /* Organização interna */
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.8rem;
+    
+    /* Ocupa 100% da célula do grid */
+    height: 100%; 
+    
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Tipografia do Texto */
-.texto-competicao p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: #e0e0e0; /* Branco levemente cinza para não cansar a vista */
-    line-height: 1.6;
-    text-align: justify; /* Texto justificado fica mais "blocado" e técnico */
-    margin: 0;
+.dashboard-item:hover {
+    border-color: rgba(54, 211, 102, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Destaque para a primeira frase ou números (Opcional, se quiser usar <strong> no HTML) */
-.texto-competicao strong {
-    color: var(--primary-collor);
-    font-weight: 600;
-}
-
-
-/* --- CONTAINER PRINCIPAL DO SWIPER --- */
-.swiper-container {
-    width: 320px;
-    height: 520px; /* Altura ajustada para caber o card + sombra sem cortar */
-    margin-top: -4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: visible; /* Essencial para a sombra do card aparecer */
-    padding: 10px; /* Margem de segurança */
-}
-
-/* Título acima dos cards */
-.titulo-provas {
-    color: var(--primary-collor);
+.dash-title {
     font-family: "Conthrax", sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--primary-collor);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(55, 211, 102, 0.4);
-    background: transparent;
-    padding: 0;
-    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    flex-shrink: 0;
 }
 
-/* --- O CARD POLAROID (SLIDE) --- */
-.swiper-slide {
-    width: 280px;
-    height: 450px; /* Altura fixa para manter o formato */
-    
-    /* !important garante que sobrescreva qualquer estilo inline antigo */
-    background-color: var(--white-collor) !important; 
-    color: var(--black-collor) !important;
-    
-    border-radius: 4px; /* Cantos pouco arredondados (estilo foto física) */
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Alinha tudo ao topo */
-    align-items: center;
-    
-    /* O Padding cria a moldura branca ao redor da foto */
-    padding: 15px 15px 0 15px; 
-    box-sizing: border-box;
-    
-    /* Sombra para dar profundidade */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    border: 1px solid #ddd; /* Borda fina para definição */
-    
-    transition: transform 0.3s ease-out;
+
+/* =========================================
+   POSICIONAMENTO (GRID AREAS)
+   ========================================= */
+
+/* 1. TEXTO: Linha 1 | Colunas 1 e 2 */
+.item-texto {
+    grid-column: 1 / 3; 
+    grid-row: 1 / 2;
 }
 
-/* --- ÁREA DA IMAGEM --- */
-.polaroid-img {
-    width: 100%;       /* Ocupa toda a largura interna (descontando padding) */
-    height: 260px;     /* Altura fixa da área da foto */
-    background-color: #eee;
+/* 2. MAPA: Linha 1 | Coluna 3 */
+.item-mapa {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    padding: 0; 
     overflow: hidden;
-    border: 1px solid #ccc; /* Borda interna fina */
-    margin-bottom: 10px;
+    position: relative;
+    border: 1px solid rgba(54, 211, 102, 0.3);
 }
 
-/* A FOTO EM SI */
-.polaroid-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* O SEGREDO: Preenche o quadrado sem distorcer e sem sobrar espaço */
-    display: block;
-    
-    filter: grayscale(100%); /* Efeito preto e branco nos cards de trás */
-    transition: all 0.4s ease;
+/* 3. MENU: Linha 2 | Coluna 1 */
+.item-menu {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
 }
 
-/* Efeito quando o slide está ativo (frente) */
-.swiper-slide-active .polaroid-img img {
-    filter: grayscale(0%); /* Fica colorido */
-    transform: scale(1.1); /* Leve zoom */
+/* 4. DETALHES: Linha 2 | Colunas 2 e 3 */
+.item-detalhes {
+    grid-column: 2 / 4; 
+    grid-row: 2 / 3;
 }
 
-/* --- ÁREA DE CONTEÚDO (TEXTO) --- */
-.polaroid-content {
-    flex: 1; /* Ocupa o restante do espaço do card */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+/* 5. GALERIA: Linhas 1 e 2 | Coluna 4 */
+.item-galeria {
+    grid-column: 4 / 5;
+    grid-row: 1 / 3; 
+    padding-bottom: 0; 
+    overflow: hidden; 
 }
 
-.polaroid-content h5 {
-    font-family: "Conthrax", sans-serif;
-    font-size: 2rem;
-    margin: 0;
-    color: var(--black-collor); /* Texto preto */
-    font-weight: 700;
-    letter-spacing: 2px;
-}
 
-/* Linha verde abaixo do ano */
-.polaroid-content h5::after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 4px;
-    background-color: var(--primary-collor);
-    margin: 5px auto 10px auto;
-}
+/* =========================================
+   ESTILOS INTERNOS
+   ========================================= */
 
-.polaroid-content p {
+/* --- TEXTO --- */
+.item-texto p {
     font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
-    color: #333; /* Cinza escuro para leitura */
-    line-height: 1.4;
+    color: #ccc;
+    line-height: 1.6;
+    text-align: justify;
     margin: 0;
-    
-    /* Limita o texto a 3 linhas */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    overflow-y: auto; 
+    padding-right: 5px;
+    flex: 1;
 }
 
-/* Paginação (Bolinhas) */
-.swiper-pagination-bullet-active {
-    background: var(--primary-collor) !important;
-}
-
-/* --- BOTÃO SAIBA MAIS --- */
 .btn-saiba-competicao {
-    align-self: flex-start; /* Alinha à esquerda do bloco de texto */
-    background-color: transparent;
-    border: 2px solid var(--primary-collor); /* Borda verde */
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid var(--primary-collor);
     color: var(--white-collor);
-    padding: 0.8rem 2rem;
-    border-radius: 5px;
-    font-family: "Conthrax", sans-serif; /* Fonte Tech */
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-family: "Conthrax", sans-serif;
+    font-size: 0.7rem;
     text-decoration: none;
     transition: all 0.3s ease;
-    margin-top: 1rem;
-    text-align: center;
+    margin-top: auto; 
+    white-space: nowrap;
+}
+.btn-saiba-competicao:hover {
+    background: var(--primary-collor);
+    color: var(--black-collor);
+    font-weight: 700;
 }
 
-.btn-saiba-competicao:hover {
-    background-color: var(--primary-collor);
-    color: var(--black-collor); /* Texto preto no fundo verde */
-    box-shadow: 0 0 15px rgba(55, 211, 102, 0.4); /* Glow no hover */
+/* --- MENU --- */
+.menu-botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto; 
+    flex: 1;
+    padding-right: 5px;
+}
+
+.prova-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #aaa;
+    padding: 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+.prova-btn:hover, .prova-btn.active {
+    background: rgba(54, 211, 102, 0.1);
+    border-color: var(--primary-collor);
+}
+.prova-btn.active strong, .prova-btn.active i {
+    color: var(--primary-collor);
+    text-shadow: 0 0 5px rgba(54, 211, 102, 0.4);
+}
+.prova-btn strong { font-family: "Conthrax", sans-serif; font-size: 0.8rem; color: #fff; display: block; }
+.prova-btn span { font-size: 0.65rem; font-family: 'Poppins', sans-serif; }
+
+/* --- MAPA (COLORIDO) --- */
+.map-header {
+    position: absolute; top: 10px; left: 10px; z-index: 10;
+    background: rgba(0,0,0,0.8); padding: 4px 8px; border-radius: 4px;
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.map-header h5 { font-family: "Conthrax", sans-serif; font-size: 0.65rem; color: #fff; margin: 0; }
+.blinking-dot { width: 6px; height: 6px; background: #ff3b3b; border-radius: 50%; animation: blink 1.5s infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.map-container { width: 100%; height: 100%; position: relative; }
+
+.map-container iframe {
+    /* REMOVIDO O GRAYSCALE. 
+       Apenas um leve ajuste de contraste para manter a nitidez do satélite. */
+    filter: brightness(0.9) contrast(1.1);
+    width: 100%; height: 100%; opacity: 1; transition: all 0.5s ease;
+}
+
+.map-container:hover iframe {
+    /* Brilho total no hover */
+    filter: brightness(1) contrast(1);
+}
+.map-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; box-shadow: inset 0 0 30px rgba(0,0,0,0.8); }
+
+/* --- DETALHES --- */
+.tab-content {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    overflow-y: auto; 
+    padding-right: 5px;
+}
+.tab-content.active { display: flex; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.detail-list li {
+    font-family: 'Poppins', sans-serif; font-size: 0.95rem; color: #ccc;
+    border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; margin-bottom: 10px;
+}
+.detail-list strong { color: var(--primary-collor); }
+
+.enduro-stats { display: flex; gap: 15px; margin-bottom: 10px; }
+.stat-box { 
+    background: rgba(255,255,255,0.05); padding: 12px; 
+    border: 1px solid var(--primary-collor); flex: 1; 
+    text-align: center; border-radius: 4px; 
+}
+.stat-box span { font-size: 0.7rem; color: #888; display: block; }
+.stat-box strong { font-size: 1.2rem; color: #fff; font-family: "Conthrax", sans-serif; }
+
+
+/* =========================================
+   GALERIA INFINITA (COLORIDA & GRID 2)
+   ========================================= */
+
+.gallery-mask {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+}
+
+.gallery-track {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+    animation: scrollVertical 30s linear infinite;
+}
+
+.gallery-track:hover {
+    animation-play-state: paused;
+}
+
+.gallery-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 12px;
+}
+
+.gallery-group img {
+    width: 100%;
+    height: 160px; 
+    object-fit: cover;
+    
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* REMOVIDO O GRAYSCALE (Cores Originais) */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Correção para última imagem ímpar ocupar 2 colunas */
+.gallery-group img:last-child:nth-child(odd) {
+    grid-column: span 2;
+    object-position: center 20%;
+}
+
+.gallery-group img:hover {
+    border-color: var(--primary-collor);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(54, 211, 102, 0.4);
+    z-index: 2;
+}
+
+@keyframes scrollVertical {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); } 
+}
+
+
+/* --- HIGHLIGHTS E SCROLLBARS --- */
+.tech-highlight {
+    color: var(--primary-collor); font-weight: 600; cursor: default;
+    border-bottom: 1px dotted rgba(54, 211, 102, 0.3); transition: all 0.3s;
+}
+.tech-highlight:hover { text-shadow: 0 0 10px var(--primary-collor); color: #fff; background: rgba(54, 211, 102, 0.2); }
+
+.item-texto p::-webkit-scrollbar, .menu-botoes::-webkit-scrollbar, .tab-content::-webkit-scrollbar { width: 4px; }
+.item-texto p::-webkit-scrollbar-track, .menu-botoes::-webkit-scrollbar-track, .tab-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+.item-texto p::-webkit-scrollbar-thumb, .menu-botoes::-webkit-scrollbar-thumb, .tab-content::-webkit-scrollbar-thumb { background: var(--primary-collor); border-radius: 2px; }
+
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media screen and (max-width: 1150px) {
+    .section-competicao {
+        height: auto; 
+        min-height: 100vh;
+        overflow-y: visible; 
+        padding-top: 6rem;
+        display: block; 
+    }
+
+    .competicao-dashboard {
+        display: flex; 
+        flex-direction: column; 
+        height: auto;
+        gap: 1.5rem;
+    }
+
+    .item-texto, .item-menu, .item-mapa, .item-detalhes, .item-galeria {
+        height: auto;
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .item-texto    { order: 1; }
+    .item-mapa     { order: 2; height: 300px; }
+    .item-menu     { order: 3; }
+    .item-detalhes { order: 4; }
+    
+    .item-galeria  { 
+        order: 5; 
+        height: 450px; 
+    }
+    
+    .menu-botoes { overflow-y: visible; }
 }

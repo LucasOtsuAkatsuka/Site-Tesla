@@ -182,12 +182,17 @@
             <h2 class="titulo-sobre">Sobre nós</h2>
             <div class="conteudo-sobre">
                 <div class="texto-sobre">
-                    <p class="p-texto-sobre">Somos uma equipe de competição formada em 2016 por alunos de graduação da UFMG. Projetamos e construímos um protótipo 100% elétrico para competir na Fórmula SAE Brasil.
-<br/>Desde o início, adotamos soluções inovadoras, como dois motores elétricos em 2017 e um BMS desenvolvido pela própria equipe em 2018, ano em que alcançamos o 2º lugar geral.
-<br/>Seguimos aprimorando nossos projetos para evoluir o desempenho do veículo e o desenvolvimento técnico dos membros.
-                    </p>
-                    <a class="btn-texto-sobre" href="">MAIS SOBRE NÓS<s></s></a>
-                </div>
+    <p class="p-texto-sobre">
+        Somos uma equipe de competição formada em 2016 por <span class="tech-highlight">alunos de graduação da UFMG</span>. 
+        Projetamos e construímos um <span class="tech-highlight">protótipo 100% elétrico</span> para competir na Fórmula SAE Brasil.
+        <br/><br/>
+        Desde o início, adotamos soluções inovadoras, como o pioneirismo no uso de <span class="tech-highlight">dois motores elétricos</span> e um <span class="tech-highlight">BMS desenvolvido pela própria equipe</span>.
+        <br/><br/>
+        Essas inovações nos levaram a ser a <span class="tech-highlight">2ª melhor equipe do Brasil</span> em 2018. Seguimos aprimorando nossos projetos para evoluir o desempenho e o desenvolvimento técnico dos membros.
+    </p>
+    
+    <a class="btn-texto-sobre" href="">MAIS SOBRE NÓS</a>
+</div>
                 <div class="carrossel-sobre">
                     <div class="carrossel-imagens">
                         <div class="carrossel-item"><img src="./Assets/images/equipe2018.jpg" alt="img 1"></div>
@@ -206,7 +211,7 @@
                 
                 <div class="list">
                     <div class="item">
-                        <img src="/Assets/images/nich-3.jpg">
+                        <img src="/Assets/images/nich-betim-2.jpg">
                         <div class="content">
                             <div class="author">2025</div>
                             
@@ -405,81 +410,122 @@
         </section>
         <section id="competicao" class="section-competicao">
             <h4 class="titulo-competicao">Competição</h4>
-            <div class="conteudo-competicao">
-                <div class="texto-competicao">
-                    <p>A edição brasileira, Fórmula SAE Brasil, reúne cerca de 
-                        70 equipes de vários países da América Latina, resultando na participação de mais de 1400 
-                        alunos envolvidos.
-                        <br/>Desde 2017 - ano em que competimos pela primeira vez - a equipe 
-                        Fórmula Tesla UFMG é referência em sua categoria, sendo 
-                        frequentemente ocupante do pódio e ganhadora de 
-                        diversas provas ao longo das competições.
-                        <br/>A competição dura 4 dias, no qual ocorrem inspeções mecânicas e elétricas, apresentações teóricas, provas estáticas e dinâmicas.
+            
+            <div class="competicao-dashboard">
+
+                <div class="dashboard-item item-texto">
+                    <h3 class="dash-title"><i class="fa-solid fa-flag-checkered"></i> O EVENTO</h3>
+                    <p>
+                        A <span class="tech-highlight">Fórmula SAE Brasil</span> ocorre no ECPA (Piracicaba-SP).
+                        São 4 dias onde o carro é levado ao limite. Não basta ser rápido; é preciso ser <span class="tech-highlight">confiável e eficiente</span>.
                     </p>
-                    <a class="btn-saiba-competicao" href="">SAIBA MAIS</a>
+                    <a class="btn-saiba-competicao" href="https://saebrasil.org.br" target="_blank">REGULAMENTO</a>
                 </div>
-                <div class="swiper-container">
-                    <p class="titulo-provas">EDIÇÕES QUE PARTICIPAMOS</p>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" >
-                            <div class="polaroid-img">
-                                <img src="./Assets/images/equipe2025.jpg" alt="">
+
+                <div class="dashboard-item item-menu">
+                    <h3 class="dash-title"><i class="fa-solid fa-list-check"></i> CATEGORIAS</h3>
+                    
+                    <div class="menu-botoes">
+                        <button class="prova-btn active" onclick="activateTab('estaticas', this)">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                            <div>
+                                <strong>Provas Estáticas</strong>
+                                <span>Engenharia e Gestão</span>
                             </div>
-                            <div class="polaroid-content">
-                                <h5>2025</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </button>
+
+                        <button class="prova-btn" onclick="activateTab('dinamicas', this)">
+                            <i class="fa-solid fa-stopwatch"></i>
+                            <div>
+                                <strong>Provas Dinâmicas</strong>
+                                <span>Performance em Pista</span>
                             </div>
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="polaroid-img">
-                                <img src="./Assets/images/equipe2023.JPG" alt="">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-item item-mapa">
+                    <div class="map-header">
+                        <span class="blinking-dot"></span>
+                        <h5>LOCALIZAÇÃO: ECPA - PIRACICABA / SP</h5>
+                    </div>
+                    
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1664.977126834249!2d-47.53408040332339!3d-22.73867484171444!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c62f55fe74e919%3A0x8336374a8935c0ef!2sEsporte%20Clube%20Piracicabano%20de%20Automobilismo!5e1!3m2!1spt-BR!2sbr!4v1768962777584!5m2!1spt-BR!2sbr" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="false" loading="lazy">
+                        </iframe>
+                        <div class="map-overlay"></div>
+                    </div>
+                </div>
+
+                <div class="dashboard-item item-detalhes">
+                    
+                    <div id="estaticas" class="tab-content active">
+                        <h3 class="dash-title"><i class="fa-solid fa-clipboard-check"></i> DETALHES: ESTÁTICAS</h3>
+                        <ul class="detail-list">
+                            <li>
+                                <strong>Design Report:</strong> Defesa técnica do projeto perante juízes da indústria.
+                            </li>
+                            <li>
+                                <strong>Cost Report:</strong> Análise detalhada de custos de manufatura e viabilidade.
+                            </li>
+                            <li>
+                                <strong>Business:</strong> Apresentação de plano de negócios para produção em série.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="dinamicas" class="tab-content">
+                        <h3 class="dash-title"><i class="fa-solid fa-gauge-high"></i> DETALHES: DINÂMICAS</h3>
+                        <ul class="detail-list">
+                            <li>
+                                <strong>Aceleração (75m):</strong> Teste puro de torque e potência dos motores elétricos.
+                            </li>
+                            <li>
+                                <strong>Skidpad:</strong> Prova em "8" que avalia a aceleração lateral e suspensão.
+                            </li>
+                            <li>
+                                <strong>Autocross:</strong> Uma volta rápida no circuito avaliando a agilidade do carro.
+                            </li>
+                            <li>
+                                <strong>Enduro:</strong> A prova mais difícil. O carro deve percorrer 22km sem falhas.<br> A pontuação de <strong>Eficiência Energética</strong> é calculada com base no consumo total durante desta prova.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-item item-galeria">
+                    <h3 class="dash-title"><i class="fa-solid fa-users-viewfinder"></i> HALL DE EQUIPES</h3>
+                    
+                    <div class="gallery-mask">
+                        <div class="gallery-track">
+                            
+                            <div class="gallery-group">
+                                <img src="./Assets/images/equipe2025.jpg" title="Equipe 2025">
+                                <img src="./Assets/images/equipe2024.jpg" title="Equipe 2024">
+                                <img src="./Assets/images/equipe2023.JPG" title="Equipe 2023">
+                                <img src="./Assets/images/equipe2022.jpg" title="Equipe 2022">
+                                <img src="./Assets/images/equipe2019.jpg" title="Equipe 2019">
+                                <img src="./Assets/images/equipe2018.jpg" title="Equipe 2018">
+                                <img src="./Assets/images/equipe2017.png" title="Equipe 2017">
+                                </div>
+
+                            <div class="gallery-group">
+                                <img src="./Assets/images/equipe2025.jpg" title="Equipe 2025">
+                                <img src="./Assets/images/equipe2024.jpg" title="Equipe 2024">
+                                <img src="./Assets/images/equipe2023.JPG" title="Equipe 2023">
+                                <img src="./Assets/images/equipe2022.jpg" title="Equipe 2022">
+                                <img src="./Assets/images/equipe2019.jpg" title="Equipe 2019">
+                                <img src="./Assets/images/equipe2018.jpg" title="Equipe 2018">
+                                <img src="./Assets/images/equipe2017.png" title="Equipe 2017">
                             </div>
-                            <div class="polaroid-content">
-                                <h5>2023</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>                                
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="polaroid-img">
-                                <img src="./Assets/images/equipe2022.jpg" alt="">
-                            </div>
-                            <div class="polaroid-content">
-                                <h5>2022</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>                   
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="polaroid-img">
-                                <img src="./Assets/images/equipe2019.jpg" alt="">
-                            </div>
-                            <div class="polaroid-content">
-                                <h5>2019</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>                      
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="polaroid-img">
-                                <img src="./Assets/images/equipe2018.jpg" alt="">
-                            </div>
-                            <div class="polaroid-content">
-                                <h5>2018</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>                       
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="polaroid-img">
-                                <img src="./Assets/images/equipe2017.png" alt="">
-                            </div>
-                            <div class="polaroid-content">
-                                <h5>2017</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>                         
+
                         </div>
                     </div>
-                    <div class="swiper-pagination"></div>
                 </div>
+
             </div>
-            
         </section>
         
         <section id="equipe" class="section-equipe">
@@ -648,14 +694,6 @@
                             </div>
                         </a>
         
-                        <a href="https://wa.me/5511943210060" target="_blank" class="card-contato whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <div class="texto-card">
-                                <h4>WhatsApp</h4>
-                                <p>Fale conosco diretamente pelo WhatsApp da equipe Tesla UFMG.</p>
-                            </div>
-                        </a>
-        
                         <a href="https://www.instagram.com/teslaufmg/" target="_blank" class="card-contato instagram">
                             <i class="fa-brands fa-instagram"></i>
                             <div class="texto-card">
@@ -700,7 +738,8 @@
 
         <div class="coluna-footer direito-footer">
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.457317266399!2d-43.96160392395568!3d-19.865360637500593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa690f671310653%3A0x403e09848520556!2sEscola%20de%20Engenharia%20da%20UFMG!5e0!3m2!1spt-BR!2sbr!4v1715000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d3752.2926274535243!2d-43.9653966901509!3d-19.869861774561546!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDUyJzEyLjIiUyA0M8KwNTcnNDkuNCJX!5e0!3m2!1spt-BR!2sbr!4v1768963193954!5m2!1spt-BR!2sbr" 
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
@@ -721,6 +760,7 @@
     <script src="./Assets/js/headerObserver.js"></script>
     <script src="./Assets/js/homeAnimation.js"></script>
     <script src="./Assets/js/scrollDisappear.js"></script>
+    <script src="./Assets/js/competitionNavigation.js"></script>
 </body>
 </html>
 

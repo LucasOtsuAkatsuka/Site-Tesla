@@ -20,8 +20,11 @@ html, body {
     background-color: var(--black-collor);
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth !important;
+    
+    overscroll-behavior-y: none;
 }
+
 
 body::-webkit-scrollbar {
     display: none;

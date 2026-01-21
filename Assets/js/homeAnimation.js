@@ -24,118 +24,110 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+/*
+(function() {
     let isAnimating = false;
     
-    // Ajuste este valor se a Header estiver cobrindo o texto.
-    const headerOffset = 0; 
+    // --- CONFIGURAÇÕES ---
+    const ANIMATION_DURATION = 700; 
     
-    // Duração da animação em milissegundos (quanto menor, mais rápido e "seco" o freio)
-    const animationDuration = 800; 
+    // ZONA DE TOLERÂNCIA (O SEGREDO DA CORREÇÃO):
+    // Aumentamos de 1px para 60px. 
+    // Isso garante que, mesmo que o scroll "escape" um pouco no início, 
+    // o script ainda vai pegar o usuário e levar para o lugar certo.
+    const TRIGGER_THRESHOLD = 500; 
 
-    // Função de Easing (Movimento suave: começa devagar, acelera, termina devagar)
-    const easeInOutQuad = (t) => {
-        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    // Curva "EaseOutExpo" (Rápida e suave)
+    const easeOutExpo = (t) => {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
     };
 
-    // Função que anima o scroll manualmente (O segredo do freio)
-    const customScrollTo = (targetPosition) => {
-        const startPosition = window.scrollY;
-        const distance = targetPosition - startPosition;
+    const smoothScrollToTarget = (targetY) => {
+        const startY = window.scrollY;
+        const distance = targetY - startY;
         let startTime = null;
 
-        const animation = (currentTime) => {
-            if (startTime === null) startTime = currentTime;
+        const animationStep = (currentTime) => {
+            if (!startTime) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
             
-            // Calcula o progresso (0 a 1)
-            let progress = timeElapsed / animationDuration;
+            let progress = timeElapsed / ANIMATION_DURATION;
             if (progress > 1) progress = 1;
 
-            // Aplica a curva de suavidade
-            const ease = easeInOutQuad(progress);
+            const ease = easeOutExpo(progress);
+            window.scrollTo(0, startY + (distance * ease));
 
-            // Move a tela
-            window.scrollTo(0, startPosition + (distance * ease));
-
-            if (timeElapsed < animationDuration) {
-                requestAnimationFrame(animation);
+            if (timeElapsed < ANIMATION_DURATION) {
+                requestAnimationFrame(animationStep);
             } else {
-                // FIM DA ANIMAÇÃO:
-                // Garante que parou no pixel exato
-                window.scrollTo(0, targetPosition);
-                
-                // Libera o scroll e a trava
-                setTimeout(() => {
-                    document.body.style.overflow = ''; // Devolve o scroll nativo
-                    document.documentElement.style.overflow = ''; 
-                    isAnimating = false;
-                }, 50); // Pequeno delay para garantir que a inércia morreu
+                window.scrollTo(0, targetY);
+                setTimeout(() => { isAnimating = false; }, 50);
             }
         };
 
-        requestAnimationFrame(animation);
+        requestAnimationFrame(animationStep);
     };
 
-    // Função Principal de Disparo
-    const triggerScrollDown = () => {
-        if (isAnimating) return;
+    const triggerAction = () => {
         isAnimating = true;
-
-        // --- O FREIO ABS ---
-        // Ao definir overflow: hidden, o navegador é OBRIGADO a matar 
-        // qualquer inércia/momentum acumulado no touchpad instantaneamente.
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-
-        const targetPosition = window.innerHeight - headerOffset;
-        
-        customScrollTo(targetPosition);
+        const destination = window.innerHeight;
+        smoothScrollToTarget(destination);
     };
 
-    // ---------------- EVENT LISTENERS ---------------- //
+    // --- BLOQUEIO E DETECÇÃO ---
+    
+    const options = { passive: false };
 
-    // 1. Bloqueador de Eventos (Impede briga com o scroll manual)
-    const preventDefault = (e) => {
+    // 1. RODA DO MOUSE (PC)
+    window.addEventListener('wheel', (e) => {
         if (isAnimating) {
             e.preventDefault();
-            e.stopPropagation();
-            return false;
+            return;
         }
-    };
-    
-    // Adiciona o bloqueio com prioridade máxima
-    window.addEventListener('wheel', preventDefault, { passive: false });
-    window.addEventListener('touchmove', preventDefault, { passive: false });
 
-    // 2. Detector de Roda do Mouse / Touchpad
-    window.addEventListener('wheel', (e) => {
-        if (!isAnimating && window.scrollY < 10) {
-            // Se tentar descer (deltaY > 0)
+        // CORREÇÃO AQUI: Usamos a TRIGGER_THRESHOLD em vez de 1 ou 5.
+        // Se o usuário estiver nos primeiros 60px da página...
+        if (window.scrollY < TRIGGER_THRESHOLD) {
+            // ...e tentar descer (deltaY > 0)
             if (e.deltaY > 0) {
-                e.preventDefault(); // Cancela o scroll nativo inicial
-                triggerScrollDown();
+                e.preventDefault(); // Trava o scroll nativo (mesmo que já tenha descido um pouco)
+                triggerAction();    // E completa a animação até o ponto certo
             }
         }
-    }, { passive: false });
+    }, options);
 
-    // 3. Detector de Toque (Mobile)
+    // 2. TECLADO
+    window.addEventListener('keydown', (e) => {
+        if (isAnimating) { e.preventDefault(); return; }
+        
+        const keys = [32, 34, 40]; 
+        if (window.scrollY < TRIGGER_THRESHOLD && keys.includes(e.keyCode)) {
+            e.preventDefault();
+            triggerAction();
+        }
+    }, options);
+
+    // 3. TOQUE (Mobile)
     let touchStartY = 0;
     
     window.addEventListener('touchstart', (e) => {
         touchStartY = e.touches[0].clientY;
-    }, { passive: false });
+    }, options);
 
     window.addEventListener('touchmove', (e) => {
-        if (!isAnimating && window.scrollY < 10) {
+        if (isAnimating) { e.preventDefault(); return; }
+
+        if (window.scrollY < TRIGGER_THRESHOLD) {
             const touchEndY = e.touches[0].clientY;
             const deltaY = touchStartY - touchEndY;
 
-            // Sensibilidade do toque (arrastar mais de 30px)
-            if (deltaY > 30) { 
+            // Sensibilidade do toque
+            if (deltaY > 5) { 
                 e.preventDefault();
-                triggerScrollDown();
+                triggerAction();
             }
         }
-    }, { passive: false });
-});
+    }, options);
+
+})();
+*/
